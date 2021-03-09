@@ -1,0 +1,15 @@
+{# ce code donne la possibilité d'aller dans le dashbord directement à partir du site #}
+
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a class="dashbordd" data-toggle="tooltip" data-placement="top" 
+    title="Dasbord" href="{{path('easyadmin')}}" style="padding-left:0px;">
+        <i class="fa fa-dashboard" style="color:green;"></i>
+    </a>
+    {% endif %}
+    {% if is_granted('ROLE_MODO') %}
+    <a class="dashbordd" data-toggle="tooltip" data-placement="top" 
+    title="Dasbord" href="{{path('easyadmin')}}" style="padding-left:0px;">
+        <i class="fa fa-dashboard" style="color:green;"></i>
+    </a>
+{% endif %}

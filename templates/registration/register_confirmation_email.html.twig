@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Confirmation de votre adresse e-mail</h1>
+    <p>
+        Pour activer votre compte, merci de confirmer votre adresse e_mail en cliquant sur le lien suivant:
+        <a href="{{ absolute_url(path('app_verify_account', {'id': userID, 'token': registrationToken})) }}">Confirmer votre adresse e-mail</a>
+        ce lien expire le {{tokenLifeTime}}.
+    </p>
+    {# <img src="{{ email.image('@images/footer.png')}}" alt="footer email">  <!--le @ c'est pour pointer vers le dossier images gace au reglage dans le fichier twig.yaml--> #}
+</div>

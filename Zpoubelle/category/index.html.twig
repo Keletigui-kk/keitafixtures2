@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+<p>Catégories : 
+    {% for categorie in post.category %}
+        {{ categories.nom }} 
+    {% endfor %}
+</p>
+{% endblock %}

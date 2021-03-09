@@ -1,0 +1,45 @@
+easy_admin:
+  entities:
+         Users:
+              class: App\Entity\Users
+              list:
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-primary' }
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                form:  # pour modifier le formulaire
+                    fields:  # pour modifier les champds du formulaire
+                        - {property: 'prenom', type: 'text' }
+                        - {property: 'nom', type: 'text' }    
+                        - {property: 'email', type: 'email' }    
+                        - {property: 'roles', type: 'roles' }    
+                
+
+
+
+
+
+
+
+
+
+
+
+
+# easy_admin: 
+#     entities:
+#          Users:
+#               class: App\Entity\Users
+#               list:
+#                 actions:
+#                   - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-primary' }
+#                   - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+            # item_permission: [ROLE_SUPER_ADMIN]
+            #     title: "Most recent Users"
+            #     max_results: 5
+            #     fields:
+            #       - email
+                  
+              # form:  # pour modifier le formulaire
+              #      fields:  # pour modifier les champds du formulaire
+              #          - {property: 'nom', type: 'text' }
+              #          - {property: 'slug', type: 'text' }

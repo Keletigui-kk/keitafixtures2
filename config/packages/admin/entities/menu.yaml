@@ -1,0 +1,28 @@
+easy_admin:
+  design: 
+     brand_color: '#007f5f'
+     menu:
+        - label: 'BLOG'
+          icon: 'book'
+          children:
+            - { route: home, label: 'Voir le site', icon: 'home' }
+            - {entity: 'Post', icon: 'book', label: Post }
+            - {entity: 'Users', icon: 'users', label: Users}
+          
+
+
+
+
+
+
+
+# easy_admin:
+#     design: 
+#        brand_color: '#FF0000' 
+#        menu:
+#            - label: 'Blog'
+#              icon: 'newspaper-o'
+#              children:
+#                - {entity: 'Post', icon: 'book', label: Post }
+#                - {entity: 'Users', icon: 'users', label: Users}
+          

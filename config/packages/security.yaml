@@ -1,7 +1,15 @@
 security:
+    encoders:
+        App\Entity\Users:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Users
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -9,7 +17,14 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\UserAutenticathorAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -19,6 +34,18 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+
+    # role du plus haut au plus bas
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }        # tout ce qui aura pour route le /home aura pour role use
+         - { path: ^/admin, roles: ROLE_ADMIN }     # tout ce qui aura pour route le /admin aura pour role admin
+         - { path: ^/admin/post, roles: ROLE_EDITOR }        # tout ce qui aura pour route le /home aura pour role user
+         - { path: ^/home, roles: ROLE_USER }        # tout ce qui aura pour route le /home aura pour role user
+
+# role du bas au plus haut: on hiérarchise les roles
+    role_hierarchy:     
+        ROLE_USER: ROLE_USER     # a partir du moment ou on est connecté tout le monde a le role user
+        ROLE_EDITOR: ROLE_USER  # si j'ai le role editor j'ai aussi le role user
+        ROLE_ADMIN: ROLE_EDITOR  # un admin aura le role editor et aura  aussi le role user  
+        ROLE_SUPER_ADMIN: ROLE_ADMIN   
+        # on peut crée des roles qui ne seront pas dans ce fichier

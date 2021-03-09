@@ -4,12 +4,18 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-
+    # RAJOUTER DES PARAMETRES QUI SONT UTILISE DANS LE FICHIER D'ENVOIE D'EMAIL
+    app.sender_email: '%env(MAILER_SENDER_EMAIL)%'
+    app.sender_name: '%env(MAILER_SENDER_NAME)%'
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            string $uploadsDirectory: '%kernel.project_dir/puplic/uploads/' # le chemin qui mene aux uploads
+
+        # string $uploadsDirectory: '%kernel.project_dir%/public/uploads/'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -29,3 +35,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # LES PARAMETRES QUE J'AI RAJOUTE SERONT UTILISES AVEC LE SERVICE sendEmail
+    App\Service\SendEmail:
+        arguments:
+            $senderEmail: '%app.sender_email%'
+            $senderName: '%app.sender_name%'

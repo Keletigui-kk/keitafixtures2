@@ -1,0 +1,14 @@
+imports:
+    - {resource: admin/}  # pour lui dire d'aller chercher la configuration dans le dossier  admin du config
+
+
+
+
+# easy_admin:
+#      site_name: 'Mon blog'
+#      entities:
+#  #        # List the entity class name you want to manage
+#          - App\Entity\Post
+#          - App\Entity\Users
+#  #        - App\Entity\Category
+

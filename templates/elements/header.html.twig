@@ -1,0 +1,50 @@
+{% block body %}
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{path('home')}}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('france')}}">France</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('international')}}">International</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('culture')}}">Culture</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('sport')}}">Sport</a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="dashbordd" data-toggle="tooltip" data-placement="top" 
+                    title="Dasbord" href="{{path('easyadmin')}}" style="padding-left:0px;">
+                        <i class="fa fa-dashboard" style="color:red;"></i>
+                    </a>
+                {% endif %}
+                {# {% if is_granted('ROLE_EDITOR') %}
+                    <a class="dashbordd" data-toggle="tooltip" data-placement="top" 
+                    title="Dasbord" href="{{path('easyadmin')}}" style="padding-left:0px;">
+                        <i class="fa fa-dashboard" style="color:green;"></i>
+                    </a>
+                {% endif %} #}
+                {% if app.user %}
+                {# {% for post in posts %} #}
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+                {# {% endfor %}  #}
+                {% else %} 
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_login')}}"><i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav> <br>
+</div>
+
+
+{% endblock %}

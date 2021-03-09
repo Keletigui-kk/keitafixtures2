@@ -1,0 +1,10 @@
+# parameters:
+# 	level: 6
+# 	paths:
+# 		- src
+#         # excludes_analyse
+# 		- tests
+
+
+# voir sa configuration après: ce fichier peremet de verifier s'il ya des erreurs dans le code en tappant la commande
+# vendor/bin/phpstan analyse

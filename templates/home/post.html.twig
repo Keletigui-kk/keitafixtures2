@@ -1,0 +1,68 @@
+{# on crée une vue post pour voir l'article en entier  mais sans la boucle comme on veut voir l'article entier#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+     <a class="btn btn-success" href="{{path ('home')}}">Retour</a>
+        <div class="row">
+            {# boutton de retour à l'accueil #}
+            <div class="col-md-8" id="gauche">
+                <img class="card-img-top" src="{{asset('images/' ~ post.image)}}"  class="responsive-img" alt="Card image cap">
+                <h1 class="card-title">{{post.title}}</h1>
+                <p class="card-text">{{post.content}}</p>
+                <p>{{post.author}} - {{post.createdAt |date('d/m/y')}}</p>
+            </div> 
+            <div class="col-md-4" id="droite">
+                <div class="card">
+                    <div class="card-body">
+                        {% for post in post1 %}
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <img class="card-img-top" src="{{asset('images/' ~ post.image)}}"  class="responsive-img" alt="Card image cap"><!--on peut avoir un lien d'image sur le site placeholder.com pour avoir des images randon pour les fausses infos-->
+                        <p class="card-text">{{post.content}}</p>
+                        <p>{{post.author}} - {{post.createdAt |date('d/m/y')}}</p>
+                        <a href="{{path('show_post',{id:post.id})}}" class="btn btn-primary">voir l'article</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        {% for post in post2 %}
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <img class="card-img-top" src="{{asset('images/' ~ post.image)}}"  class="responsive-img" alt="Card image cap"><!--on peut avoir un lien d'image sur le site placeholder.com pour avoir des images randon pour les fausses infos-->
+                        <p class="card-text">{{post.content}}</p>
+                        <p>{{post.author}} - {{post.createdAt |date('d/m/y')}}</p>
+                        <a href="{{path('show_post',{id:post.id})}}" class="btn btn-primary">voir l'article</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>         
+        </div> 
+                    <h1 class="comment">Commentaires</h1>
+         {# ROW FORMULAIRE #}
+         <div class="row">
+            <div class="col-md-3">
+                 {# on affiche le formulaire de commentaire ici #}
+                {{form(form)}}  <br> <!--je fais appel à la fonction form et je lui passe comme argument la variable form; le formulaire est crée quand on inspecte la page on le vois-->
+            </div>
+            {# on affiche les commentaires au niveau de la vue #}
+            <div class="col-md-9">
+            {# on fait une boucle pour afficher les commentaires #}
+                {% for comment in post.comments %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{comment.pseudo}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{comment.createdAt | date ("d/m/y à h\\hi")}}</h6> <!-- date ("d/m/y h:i"-->
+                        <p class="card-text">{{comment.content}}</p>
+                    </div>
+                </div>
+                 {# {{dump(comment)}}  #}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+   
+{% endblock %}
