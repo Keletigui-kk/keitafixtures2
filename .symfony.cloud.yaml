@@ -7,8 +7,8 @@ runtime:
         - apcu
         - mbstring
         - sodium
-        - ctype
         - iconv
+        - ctype
         
 
 #variables:
